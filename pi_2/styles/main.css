@@ -1,6 +1,7 @@
 #title{
-	font-size: 26px;
+	font-size: 40px;
 	line-height: 75px;
+	width: 500px;
 }
 
 .menu-object{
@@ -15,6 +16,16 @@
 
 p{
 	text-align: center;
+}
+
+button{
+	background-color: rgb(226, 255, 245);
+	border-radius: 22px;
+	border: 2px solid #4CAF50;
+}
+
+.button2:hover {
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24)
 }
 
 button.menu-object:active{
