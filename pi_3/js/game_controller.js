@@ -27,11 +27,23 @@ var game = new Vue({
 		for (var i = 0; i < this.items.length; i++){
 			this.current_card.push({done: false, texture: back});
 		}
+		this.showCards();
+		const myTimeout = setTimeout(this.flipCards, 5000);
 	},
 	methods: {
 		clickCard: function(i){
 			if (!this.current_card[i].done && this.current_card[i].texture === back)
 				Vue.set(this.current_card, i, {done: false, texture: this.items[i]});
+		},
+		showCards: function() {
+			for (var i = 0; i < this.items.lenght; i++){
+				Vue.set(this.current_card, i, {done: false, texture: this.items[i]});
+			}
+		},
+		flipCards: function() {
+			for (var i = 0; i < this.items.lenght; i++){
+				Vue.set({done: false, texture: back});
+			}
 		}
 	},
 	watch: {
