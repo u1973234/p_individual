@@ -13,7 +13,8 @@ var game = new Vue({
 		current_card: [],
 		items: [],
 		num_cards: 2,
-		bad_clicks: 0
+		bad_clicks: 0,
+		showing_cards: true
 	},
 	created: function(){
 		this.num_cards = options_data.cards;
@@ -25,9 +26,8 @@ var game = new Vue({
 		this.items = this.items.concat(this.items); // Dupliquem els elements
 		this.items.sort(function(){return Math.random() - 0.5}); // Array aleatòria
 		for (var i = 0; i < this.items.length; i++){
-			this.current_card.push({done: false, texture: items[1]});
+			this.current_card.push({done: false, texture: this.items[i]});
 		}
-		this.showCards();
 		const myTimeout = setTimeout(this.flipCards, 5000);
 	},
 	methods: {
@@ -35,19 +35,18 @@ var game = new Vue({
 			if (!this.current_card[i].done && this.current_card[i].texture === back)
 				Vue.set(this.current_card, i, {done: false, texture: this.items[i]});
 		},
-		showCards: function() {
-			for (var i = 0; i < this.items.lenght; i++)
-				Vue.set(this.items, i, {done: false, texture: this.items[i]});
-		},
-		flipCards: function() {
-			for (var i = 0; i < this.items.lenght; i++)
-				Vue.set(this.current_card, i, {done: false, texture: back});
-			print();
+		flipCards: function(){
+			this.showing_cards = false; 
+			for (var i = 0; i < this.items.lenght; i++){
+				this.current_card[i];
+			} 
+			Vue.set(this.current_card, i, {done: false, texture: back});
+			alert("tonto quien lo lea jajajjajajajaj xddd");
 		}
 	},
 	watch: {
 		current_card: function(value){
-			if (value.texture === back) return;
+			if (value.texture === back || this.showing_cards) return;
 			var front = null;
 			var i_front = -1;
 			for (var i = 0; i < this.current_card.length; i++){
