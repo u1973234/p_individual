@@ -25,7 +25,7 @@ var game = new Vue({
 		this.items = this.items.concat(this.items); // Dupliquem els elements
 		this.items.sort(function(){return Math.random() - 0.5}); // Array aleatòria
 		for (var i = 0; i < this.items.length; i++){
-			this.current_card.push({done: false, texture: back});
+			this.current_card.push({done: false, texture: items[1]});
 		}
 		this.showCards();
 		const myTimeout = setTimeout(this.flipCards, 5000);
@@ -36,14 +36,13 @@ var game = new Vue({
 				Vue.set(this.current_card, i, {done: false, texture: this.items[i]});
 		},
 		showCards: function() {
-			for (var i = 0; i < this.items.lenght; i++){
-				Vue.set(this.current_card, i, {done: false, texture: this.items[i]});
-			}
+			for (var i = 0; i < this.items.lenght; i++)
+				Vue.set(this.items, i, {done: false, texture: this.items[i]});
 		},
 		flipCards: function() {
-			for (var i = 0; i < this.items.lenght; i++){
-				Vue.set({done: false, texture: back});
-			}
+			for (var i = 0; i < this.items.lenght; i++)
+				Vue.set(this.current_card, i, {done: false, texture: back});
+			print();
 		}
 	},
 	watch: {
