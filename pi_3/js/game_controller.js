@@ -18,7 +18,6 @@ var game = new Vue({
 	},
 	created: function(){
 		this.num_cards = options_data.cards;
-		console.log(options_data);
 		this.username = sessionStorage.getItem("username","unknown");
 		this.items = items.slice(); // Copiem l'array
 		this.items.sort(function(){return Math.random() - 0.5}); // Array aleatòria
@@ -28,21 +27,11 @@ var game = new Vue({
 		for (var i = 0; i < this.items.length; i++){
 			this.current_card.push({done: false, texture: this.items[i]});
 		}
-		const myTimeout = setTimeout(flipCards, 3000);
-		function flipCards(){
-			this.showing_cards = false; 
-			for (var i = 0; i < this.items.lenght; i++){
-				Vue.set(this.current_card, i, {done: false, texture: back});
-			}
-		}
 	},
 	methods: {
 		clickCard: function(i){
 			if (!this.current_card[i].done && this.current_card[i].texture === back)
 				Vue.set(this.current_card, i, {done: false, texture: this.items[i]});
-		},
-		flipCards: function(){
-			alert("ey");
 		}
 	},
 	watch: {
@@ -80,3 +69,11 @@ var game = new Vue({
 		}
 	}
 });
+
+var flipCards = function() {
+	game.showing_cards = false; 
+	for (var i = 0; i < game.items.length; i++){
+		Vue.set(game.current_card, i, {done: false, texture: back});
+	}	
+};
+const myTimeout = setTimeout(flipCards, 3000);
