@@ -28,7 +28,13 @@ var game = new Vue({
 		for (var i = 0; i < this.items.length; i++){
 			this.current_card.push({done: false, texture: this.items[i]});
 		}
-		const myTimeout = setTimeout(this.flipCards, 5000);
+		const myTimeout = setTimeout(flipCards, 3000);
+		function flipCards(){
+			this.showing_cards = false; 
+			for (var i = 0; i < this.items.lenght; i++){
+				Vue.set(this.current_card, i, {done: false, texture: back});
+			}
+		}
 	},
 	methods: {
 		clickCard: function(i){
@@ -36,12 +42,7 @@ var game = new Vue({
 				Vue.set(this.current_card, i, {done: false, texture: this.items[i]});
 		},
 		flipCards: function(){
-			this.showing_cards = false; 
-			for (var i = 0; i < this.items.lenght; i++){
-				this.current_card[i];
-			} 
-			Vue.set(this.current_card, i, {done: false, texture: back});
-			alert("tonto quien lo lea jajajjajajajaj xddd");
+			alert("ey");
 		}
 	},
 	watch: {
